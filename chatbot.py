@@ -55,14 +55,7 @@ name = input("¿Cual es tu nombre? ")
 if (input("¿Tienes enrojecimiento en la piel? ").lower() == 's'): 
     doctor_kb.tell(expr("Sintoma({}, Enrojecimiento)".format(name)))
 
-if (input("¿Presenta Fiebre? ").lower() == 's'): 
-    doctor_kb.tell(expr("Sintoma({}, Fiebre)".format(name))) 
 
-if (input("¿Presenta Picor? ").lower() == 's'): 
-    doctor_kb.tell(expr("Sintoma({}, Picor)".format(name)))
-
-if (input("¿Presenta hinchazon? ").lower() == 's'): 
-    doctor_kb.tell(expr("Sintoma({}, Hinchazon)".format(name))) 
 
 if (input("¿Presenta ojos irritados? ").lower() == 's'): 
     doctor_kb.tell(expr("Sintoma({}, OjosIrritados)".format(name))) 
@@ -76,19 +69,51 @@ if (input("¿Presenta ojos enrojecidos? ").lower() == 's'):
 if (input("¿Presenta vision borrosa? ").lower() == 's'): 
     doctor_kb.tell(expr("Sintoma({}, VisionBorrosa)".format(name))) 
 
-if (input("¿Presenta telarañas en la piel? ").lower() == 's'): 
+if (input("¿Presenta Fiebre? ").lower() == 's'): 
+    doctor_kb.tell(expr("Sintoma({}, Fiebre)".format(name))) 
+
+if (input("¿Presenta Picor? ").lower() == 's'): 
+    doctor_kb.tell(expr("Sintoma({}, Picor)".format(name)))
+
+if (input("¿Presenta hinchazon? ").lower() == 's'): 
+    doctor_kb.tell(expr("Sintoma({}, Hinchazon)".format(name))) 
+
+if (input("¿Presenta telaranas en la piel? ").lower() == 's'): 
     doctor_kb.tell(expr("Sintoma({}, Telarana)".format(name))) 
 
 
 ### Tratamiento 
 print("\n Este es el tratamiento a llevar \n")
-answer = fol_fc_ask(doctor_kb, expr("Tratamiento({}, x)".format(name)))
-answer = list(answer)
+answer_trat = fol_fc_ask(doctor_kb, expr("Tratamiento({}, x)".format(name)))
+answer_trat = list(answer)
 
-if len(answer) > 0: 
-    for sintoms in answer: 
+if len(answer_trat) > 0: 
+    for sintoms in answer_trat: 
+        print(sintoms[x])
+
+else: 
+    print("No hay tratamiento, te vas a morir muajaja")
+
+### Recomendaciones
+print("\n Estas son las recomendaciones a llevar \n")
+answer_rec = fol_fc_ask(doctor_kb, expr("Recomendacion({}, x)".format(name)))
+answer_rec = list(answer_rec)
+
+if len(answer_rec) > 0: 
+    for sintoms in answer_rec: 
+        print(sintoms[x])
+
+else: 
+    print("No hay recomendaciones")
+
+### Diagnostico 
+print("\n Este es el diagnostico \n")
+answer_di = fol_fc_ask(doctor_kb, expr("Enfermo({}, x)".format(name)))
+answer_di = list(answer_di)
+
+if len(answer_di) > 0: 
+    for sintoms in answer_di: 
         print(sintoms[x])
 
 else: 
     print("No hay diagnostico")
-
