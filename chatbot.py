@@ -1,5 +1,5 @@
 #chatbot
 print("Hellow")
 
-print(2+2)
+print(str(2+2))
 
