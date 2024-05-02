@@ -56,10 +56,13 @@ clauses.append(expr("(Sintoma(x, PuntosBlancos) & Sintoma(x, Papulas) & Sintoma(
 clauses.append(expr("(Sintoma(x, PuntosBlancos) & Sintoma(x, PuntosNegros) & Sintoma(x, Papulas) & Sintoma(x, Seborrea)) ==> Enfermo(x, Acne)"))
 clauses.append(expr("Enfermo(x, Acne) ==> Tratamiento(Clindamicina)"))
 clauses.append(expr("Enfermo(x, Acne) ==> Tratamiento(x, GelPeroxidoBenzoilo)"))
-clauses.append(expr("Enfermo(x, Acne) ==> Tretinoina"))
+clauses.append(expr("Enfermo(x, Acne) ==> Tratamiento(x, Tretinoina)"))
 clauses.append(expr("(Sintoma(x, Vesiculas) & Sintoma(x, DolorBoca) & Sintoma(x, Fiebre)) ==> Enfermo(x, Herpes)"))
 clauses.append(expr("(Sintoma(x, Vesiculas) & Sintoma(x, Fiebre)) ==> Enfermo(x, Herpes)"))
 clauses.append(expr("(Sintoma(x, Vesiculas) & Sintoma(x, DolorBoca)) ==> Enfermo(x, Herpes)"))
+clauses.append(expr("Sintoma(x, Vesiculas) ==> Enfermo(x, Herpes)"))
+
+
 
 # Gabriela Lujan
 
@@ -218,7 +221,21 @@ if (input("¿Presenta hinchazon en la piel? ").lower() == 's'):
 if (input("¿Presenta Ronchas Rojas en la piel? ").lower() == 's'): 
     doctor_kb.tell(expr("Sintoma({}, RonchasRojas)".format(name)))
 
+#---------------------------------------------------------
+if (input("¿Presenta puntos blancos en la cara? ").lower() == 's'): 
+    doctor_kb.tell(expr("Sintoma({}, PuntosBlancos)".format(name)))
 
+if (input("¿Presenta puntos negros en la cara? ").lower() == 's'): 
+    doctor_kb.tell(expr("Sintoma({}, PuntosNegros)".format(name)))
+
+if (input("¿Presenta papulas en la cara? ").lower() == 's'): 
+    doctor_kb.tell(expr("Sintoma({}, Papulas)".format(name)))
+
+if(input("¿Padece de piel grasa y escamosa, así como caspa en la cara?").lower() == 's'):
+    doctor_kb.tell(expr("Sintoma({}, Seborrea)".format(name)))
+
+if(input("¿Presenta vesiculas en la boca?").lower() == 's'):
+    doctor_kb.tell(expr("Sintoma({}, Vesiculas)".format(name)))
 ### Tratamiento 
 print("\nEste es el tratamiento a llevar: ")
 answer_trat = fol_fc_ask(doctor_kb, expr("Tratamiento({}, x)".format(name)))
