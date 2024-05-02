@@ -147,6 +147,7 @@ if (input("¿Tienes enrojecimiento en la piel? ").lower() == 's'):
 
 dec = fol_fc_ask(doctor_kb, expr("Sintoma({}, Enrojecimiento)".format(name)))
 dec = list(dec)
+print(dec)
 
 if len(dec) > 0: 
 
@@ -236,6 +237,10 @@ if(input("¿Padece de piel grasa y escamosa, así como caspa en la cara?").lower
 
 if(input("¿Presenta vesiculas en la boca?").lower() == 's'):
     doctor_kb.tell(expr("Sintoma({}, Vesiculas)".format(name)))
+
+if(input("¿Presenta dolor de boca?").lower() == 's'):
+    doctor_kb.tell(expr("Sintoma({}, DolorBoca)".format(name)))
+
 ### Tratamiento 
 print("\nEste es el tratamiento a llevar: ")
 answer_trat = fol_fc_ask(doctor_kb, expr("Tratamiento({}, x)".format(name)))
