@@ -260,7 +260,7 @@ class TSPGui():
         while True:
             population = [mutate(recombine(*select(2, population, fitness_fn)), self.mutation_rate.get())
                           for _ in range(len(population))]
-            current_best = np.argmax(population, key=fitness_fn)
+            current_best = utils.argmax_random_ties(population, key=fitness_fn)
             if fitness_fn(current_best) > fitness_fn(all_time_best):
                 all_time_best = current_best
                 self.cost.set("Cost = " + str('%0.3f' % (-1 * problem.value(all_time_best))))
